@@ -1,0 +1,607 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Kanit:ital,wght@0,200;0,300;0,400;0,500;0,600;1,600&family=Montserrat:wght@100;200;300;400;500&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200;1,400&family=Roboto:wght@300;400;500&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+/*menu responsivo*/
+.header-responsive {
+    background-color: #0093E9;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+}
+
+.logo-white {
+    display: none;
+
+    margin: 7px 110px 5px;
+}
+
+.button-mobile {
+    display: none;
+    align-items: flex-start;
+    align-items: center;
+    margin: 16px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    background: none;
+    border: 0;
+
+}
+
+.button-mobile:hover {
+    color: #000000;
+}
+
+.menu-mobile-img {
+    padding: 10;
+    width: 60%;
+    /* A imagem terá metade da largura do seu contêiner */
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.mobile-link a {
+    text-decoration: none;
+    color: #FFF;
+    margin-left: 10px;
+}
+
+.mobile-link {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.mobile-link a:hover {
+    color: #242526;
+    transition: 0.3s;
+}
+
+.menu-mobile-active {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #1b87a2 0%, #245dd8 100%);
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.menu-mobile-active button {
+    background: transparent;
+    border: 0;
+    color: #FFF;
+    margin-bottom: 16px;
+}
+
+.menu-mobile-actice .icon {
+    font-size: 20px;
+    min-width: 60px;
+}
+
+.mobile-text a {
+    text-decoration: none;
+}
+
+.menu-mobile-active button>span {
+
+    align-items: center;
+}
+
+.menu-mobile {
+    display: none;
+}
+
+.close-button {
+    position: fixed;
+    top: 30px;
+    /* Ajuste a margem superior desejada */
+    left: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #18191A;
+    transition: 0.4s;
+}
+
+/*conteudo principal de alugueis*/
+main {
+    position: relative;
+    padding: 1rem;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+}
+
+.sidebar.close~main {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+/*titulo do container da tabela de alugueis*/
+.table-container .main-title {
+    font-size: 25px;
+    font-weight: 500;
+    color: #1374d5;
+    padding: 8px 40px;
+}
+
+.table-container {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+/*Paginaçao acima e input de pesquisar//////////////////////////////////////*/
+.cabecalho {
+    width: 90%;
+    height: 100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*botao de adiconar*/
+.add-btn {
+    color: #13508d;
+}
+
+.add-btn:hover {
+    color: #1374d5;
+}
+
+section[cabecalho] {
+    display: flex;
+    /* Define um layout flexível */
+    align-items: center;
+    /* Alinha os itens verticalmente */
+}
+
+select {
+    padding: 2px;
+    margin: 0 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+/*tabela inteira*/
+.table-content {
+    background-color: #fff;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 5rem;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*colunas da tabela*/
+.table td,
+.table th {
+    padding: 25px 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.table th {
+    background-color: #13508d;
+    color: #ffffff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+/*editar*/
+.edit {
+    color: blue;
+}
+
+/*apagar*/
+.trash {
+    color: red;
+}
+
+/*devolver*/
+.book {
+    color: green;
+}
+
+/*atrasado,no prazo, pendente*/
+.status-btn {
+    width: 120px;
+    /* Define a largura do botão */
+    height: 40px;
+    /* Define a altura do botão */
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+}
+
+.main-title {
+    font-size: 20px;
+    font-weight: 450;
+    color: #1374d5;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-icone {
+    color: #13508d;
+    cursor: pointer;
+    font-size: 23px;
+}
+
+.add-icone:hover {
+    color: #1374d5;
+}
+
+.open-modal-button {
+    border: none;
+    background: none;
+}
+
+/*atrasado,
+no prazo,
+pendente*/
+.status-btn {
+    width: 120px;
+    /* Define a largura do botão */
+    height: 40px;
+    /* Define a altura do botão */
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+}
+
+.late {
+    background-color: #f9553b;
+}
+
+.ontime {
+    background-color: #5ded5d;
+}
+
+.pending {
+    background-color: #f9de45;
+}
+
+/*paginaçao de baixo/////////////////////*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.pagination li {
+    list-style: none;
+    padding: 2px;
+    margin: 10px;
+    flex-shrink: 0;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #999;
+    color: #999;
+}
+
+.pagination li.active {
+    background: #00bfff;
+    color: white;
+    border-color: #00bfff;
+}
+
+.pagination li a {
+    text-decoration: none;
+    padding: 3px 8px;
+    color: inherit;
+    display: block;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+.header {
+    width: 90%;
+    height: 100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.items-controller,
+.search {
+    flex-shrink: 0;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+select {
+    padding: 2px;
+    margin: 0 10px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+.search>input {
+    padding: 8px;
+    margin: 0 0 0 20px;
+    border-radius: 3px;
+}
+
+.field {
+    width: 90%;
+    height: auto;
+    margin: auto;
+}
+
+/*modal **/
+.modal-container {
+    width: 100%;
+    /*para ele cobrir a tela inteira*/
+    height: 100%;
+    /*para cobrir a altura inteira */
+    background: rgba(0, 0, 0, 0.2);
+    /*para a tela ficar cinza*/
+    position: fixed;
+    /*para ficar preso*/
+    /*para ficar sempre fixo no mesmo lugar da esquarda e do topo da tela*/
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+}
+
+.modal {
+    background: #FFF;
+    width: 0px;
+    height: 0px;
+    padding: 15px;
+    /*afastar o conteudo das bordas*/
+    border-radius: 7px;
+    box-shadow: 0 0 10px 0 #00000070;
+    /*os numeros significam a posiçao daa sombra */
+    overflow: hidden;
+    transition: width 0.15s, height 0.15s;
+
+}
+
+.modal-show>.modal {
+    width: 300px;
+    /*para ele cobrir a tela inteira*/
+    height: 370px;
+    /*para cobrir a altura inteira */
+    overflow: auto;
+}
+
+/*classe para o modal aparecer*/
+.modal-show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-header {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form-modal {
+    margin: 30px;
+}
+
+.form-modal .input-modal {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-modal label {
+    color: #333;
+}
+
+.form-modal .input-modal input {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    margin-top: 8px;
+    color: #707070;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+
+.colum {
+    display: flex;
+    column-gap: 15px;
+}
+
+/*formulario do modal*/
+.header-form {
+    background: linear-gradient(120deg, #3acbf0 0%, #8bb0ff 100%);
+    padding: 10px;
+    text-align: center;
+    color: #FFF;
+}
+
+.form {
+    padding: 18px;
+}
+
+.form-content {
+    margin-bottom: 8px;
+    padding-bottom: 18px;
+    position: relative;
+}
+
+.form-content label {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.form-content input {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid #dfdfdf;
+}
+
+.form-content a {
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    visibility: hidden;
+}
+
+.form button {
+    background-color: #00c3ff;
+    color: #fff;
+    width: 100%;
+    border-radius: 14px;
+    padding: 10px;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 14px;
+}
+
+.form-content.error input {
+    border-color: red;
+}
+
+.form-content.error a {
+    color: red;
+    visibility: visible;
+}
+
+footer{
+    margin-left: 450px;
+    margin-top: 90px;
+}
+
+/*responsividade do modal*/
+@media screen and (max-width: 500px) {
+    .colum {
+        flex-wrap: wrap;
+    }
+}
+
+/*responsividade*/
+
+@media (max-width: 550px) {
+    .logo-white {
+        display: flex;
+        width: 220px;
+        height: 70px;
+    }
+
+    .sidebar.close {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .button-mobile {
+        display: flex;
+    }
+
+    .buttton-mobile span {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+
+    .table-container {
+        width: 450px;
+        background-color: none;
+        margin-top: 90px;
+    }
+    }
+
+/*responsividade da tabela*/
+@media(max-width:680px) {
+    .table thead {
+        display: none;
+        /*caeçalho vai sumir quando a tela tiver essa largura*/
+    }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 15px;
+    }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        /*puxando  data label*/
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    section.header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .main-title {
+        margin-left: 60px;
+    }
+}
+
+.icon {
+    margin-right: 0;
+}
