@@ -5,7 +5,7 @@ if (!empty($_GET['idlivro'])) {
 
     $id = $_GET['idlivro'];
 
-    $sqlSelect = "SELECT * FROM livros WHERE idlivro=$id";
+    $sqlSelect = "SELECT * FROM livros WHERE idlivro = $id";
 
     $result = $conexao->query($sqlSelect);
 
@@ -13,8 +13,8 @@ if (!empty($_GET['idlivro'])) {
         // Excluir o registro
         $sqlDelete = "DELETE FROM livros WHERE idlivro = $id";
         $resultDelete = $conexao->query($sqlDelete);
-
     }
 }
+
 header('Location: livros.php');
 ?>

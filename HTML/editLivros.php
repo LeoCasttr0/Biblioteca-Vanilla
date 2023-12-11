@@ -111,6 +111,8 @@ if (!empty($_GET['idlivro'])) {
                         <a>Deu erroooo</a>
                     </div>
 
+
+                    <input type="hidden" name="idlivro" value="<?php echo $id ?>">
                     <button type="submit" name="update-livros" id="update-livros">Alterar</button>
                 </form>
 

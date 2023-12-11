@@ -60,7 +60,7 @@ if (!empty($_GET['id'])) {
                 <div class="form-content">
                     <label for="cidade">Cidade </label>
                     <input type="text" name="cidade" id="cidade" placeholder="Digite a Cidade da Editora"
-                        value=" <?php echo $Cidade ?>" required>>
+                        value=" <?php echo $Cidade ?>" required>
                     <!--modal-->
                     <a>Deu erroooo</a>
                 </div>

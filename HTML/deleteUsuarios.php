@@ -13,7 +13,6 @@ if (!empty($_GET['iduser'])) {
         // Excluir o registro
         $sqlDelete = "DELETE FROM usuarios WHERE iduser = $id";
         $resultDelete = $conexao->query($sqlDelete);
-
     }
 }
 header('Location: Usuarios.php');

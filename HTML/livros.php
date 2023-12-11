@@ -24,6 +24,17 @@ if (isset($_POST['submit-livros'])) {
 $sql = "SELECT * FROM livros ORDER BY idlivro DESC";
 $result = $conexao->query($sql);
 
+//pesquisar livros
+if (!empty($_GET['search'])) {
+    $data = $_GET['search'];
+    $sql = "SELECT * FROM livros WHERE idlivro LIKE '%$data%' or nomelivro LIKE '%$data%' or nomautor LIKE '%$data%' ORDER BY idlivro DESC";
+} else {
+    // Consulta padrão se não houver pesquisa
+    $sql = "SELECT * FROM livros ORDER BY idlivro DESC";
+}
+
+$result = $conexao->query($sql);
+
 ?>
 
 
@@ -348,6 +359,7 @@ $result = $conexao->query($sql);
     </main>
     <!--JS-->
     <script src="../JS/modal.js"></script>
+    <script src="../JS/pesquisar.js"></script>
     <script src="../sidebar/sidebar.js"></script>
     <script src="../JS/alugueis.js"></script>
 
