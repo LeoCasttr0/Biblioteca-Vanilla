@@ -284,7 +284,7 @@ $result = $conexao->query($sql);
 
     <!--JS-->
     <script src="../JS/pesquisar.js"></script>
-    <script src="../JS/modais.js"></script>
+    <script src="../JS/modal.js"></script>
     <script src="../sidebar/sidebar.js"></script>
     <script src="../JS/alugueis.js"></script>
 

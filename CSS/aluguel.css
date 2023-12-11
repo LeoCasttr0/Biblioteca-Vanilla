@@ -586,7 +586,6 @@ pendente*/
     background: #00bfff;
     color: white;
     border-color: #00bfff;
-
 }
 
 .pagination li a {
@@ -613,7 +612,6 @@ pendente*/
     display: flex;
     align-content: center;
     align-items: center;
-
 }
 
 select {
@@ -629,7 +627,6 @@ select {
     padding: 8px;
     margin: 0 0 0 20px;
     border-radius: 3px;
-
 }
 
 .field {
@@ -644,7 +641,6 @@ select {
     /*para ele cobrir a tela inteira*/
     height: 100vh;
     /*para cobrir a altura inteira */
-
     background: rgba(0, 0, 0, 0.2);
     /*para a tela ficar cinza*/
     position: fixed;
@@ -652,13 +648,10 @@ select {
     /*para ficar sempre fixo no mesmo lugar da esquarda e do topo da tela*/
     top: 0;
     left: 0;
-
     display: grid;
     place-items: center;
-
     opacity: 0;
     pointer-events: none;
-
     transition: opacity 0.15s;
 }
 
@@ -666,23 +659,18 @@ select {
     background: #FFF;
     width: 0px;
     height: 0px;
-
     padding: 15px;
     /*afastar o conteudo das bordas*/
     border-radius: 7px;
     box-shadow: 0 0 10px 0 #00000070;
     /*os numeros significam a posiçao daa sombra */
-
     overflow: hidden;
     transition: width 0.15s, height 0.15s;
 }
 
 .modal-show>.modal {
-
     width: 450px;
-    /*para ele cobrir a tela inteira*/
     height: 570px;
-    /*para cobrir a altura inteira */
 }
 
 /*classe para o modal aparecer*/

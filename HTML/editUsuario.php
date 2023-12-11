@@ -68,7 +68,7 @@ if (!empty($_GET['iduser'])) {
                 </div>
 
                 <input type="hidden" name="iduser" value="<?php echo $id ?>">
-                <button type="submit" name="update-user" id="update-user">Cadastrar</button>
+                <button type="submit" name="update-user" id="update-user">Alterar</button>
             </form>
         </div>
     </div>

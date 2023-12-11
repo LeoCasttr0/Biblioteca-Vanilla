@@ -13,8 +13,8 @@ if (!empty($_GET['id'])) {
     if ($result->num_rows > 0) {
 
         while ($user_data = mysqli_fetch_assoc($result)) {
-            $Editora = $user_data['nomeeditora']; // Corrigir a chave para 'nomeeditora'
-            $Cidade = $user_data['cidadeeditora']; // Corrigir a chave para 'cidadeeditora'
+            $Editora = $user_data['nomeeditora']; 
+            $Cidade = $user_data['cidadeeditora'];
         }
 
     } else {
@@ -65,7 +65,7 @@ if (!empty($_GET['id'])) {
                     <a>Deu erroooo</a>
                 </div>
                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                <button type="submit" name="update" id="update">Cadastrar</button>
+                <button type="submit" name="update" id="update">Alterar</button>
             </form>
         </div>
     </div>

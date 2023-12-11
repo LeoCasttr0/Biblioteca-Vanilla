@@ -16,8 +16,9 @@ if (isset($_POST['submit-livros'])) {
     $Autor = $_POST['Autor'];
     $ChaveEditora = $_POST['fkeditora'];
     $Quantidade = $_POST['Quanti'];
-
-    $result = mysqli_query($conexao, "INSERT INTO livros (nomelivro,autorlivro,codeeditora,quantlivros) VALUES ('$Livro','$Autor','$ChaveEditora', '$Quantidade')");
+    $Alugado = $_POST['Alug'];
+    
+    $result = mysqli_query($conexao, "INSERT INTO livros (nomelivro,autorlivro,codeeditora,quantlivros,quantalug) VALUES ('$Livro','$Autor','$ChaveEditora', '$Quantidade', '$Alugado')");
 }
 
 $sql = "SELECT * FROM livros ORDER BY idlivro DESC";
@@ -203,9 +204,9 @@ $result = $conexao->query($sql);
                 <div class="items-controller">
                     <h5>Mostrar</h5>
                     <select name="" id="itemperpage">
-                        <option value="1">01</option>
-                        <option value="2">02</option>
-                        <option value="3" selected>03</option>
+                        <option value="5">05</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
 
                     </select>
                     <h5>Por Página</h5>
@@ -243,13 +244,14 @@ $result = $conexao->query($sql);
                             echo "<td  data-label='Autor'>" . $user_data['autorlivro'] . "</td>";
                             echo "<td  data-label='Editora'>" . $editora_data['nomeeditora'] . "</td>";
                             echo "<td  data-label='Quantidade'>" . $user_data['quantlivros'] . "</td>";
+                            echo "<td  data-label='Alugado'>" . $user_data['quantalug'] . "</td>";
                             echo "<td  data-label='Ações'>
 
-                            <a href='editUsuario.php?iduser=$user_data[idlivro]'>
+                            <a href='editLivros.php?idlivro=$user_data[idlivro]'>
                             <i class='edit bi bi-pencil-fill'></i>
                         </a>
  
-                        <a href='deleteUsuarios.php?iduser=$user_data[idlivro]'>
+                        <a href='deleteLivros.php?iduser=$user_data[idlivro]'>
                         <i class='trash bi bi-trash3-fill'></i>
                         </a>
                         
@@ -323,12 +325,19 @@ $result = $conexao->query($sql);
 
                     <div class="form-content">
                         <label for="Quantidade">Quantidade do Livro</label>
-                        <input type="number" id="Quanti" name="Quanti" placeholder="Digite quantidade de exemplares ">
+                        <input type="number" id="Quanti" name="Quanti" placeholder="Digite quantidade de exemplares">
 
                         <!--modal-->
                         <a>Deu erroooo</a>
                     </div>
 
+                    <div class="form-content">
+                        <label for="Quantidade">Quantidade Alugada deste Livro</label>
+                        <input type="number" id="Alug" name="Alug" placeholder="Digite quantidade alugada deste livro">
+
+                        <!--modal-->
+                        <a>Deu erroooo</a>
+                    </div>
 
                     <button type="submit" name="submit-livros" id="submit">Cadastrar</button>
                 </form>

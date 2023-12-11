@@ -19,13 +19,11 @@ body {
     width: 100%;
     position: fixed;
     z-index: 1;
-
     display: flex;
 }
 
 .logo-white {
     display: none;
-
     margin: 7px 110px 5px;
 }
 
@@ -39,7 +37,6 @@ body {
     color: #fff;
     background: none;
     border: 0;
-
 }
 
 .button-mobile:hover {
@@ -73,7 +70,6 @@ body {
 .menu-mobile-active {
     width: 100%;
     height: 100%;
-
     background: linear-gradient(120deg, #1b87a2 0%, #245dd8 100%);
     z-index: 99;
     position: fixed;
@@ -84,7 +80,6 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-
 }
 
 .menu-mobile-active button {
@@ -104,7 +99,6 @@ body {
 }
 
 .menu-mobile-active button>span {
-
     align-items: center;
 }
 
@@ -129,7 +123,6 @@ body {
 /*conteudo principal de alugueis*/
 main {
     position: relative;
-
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
@@ -154,8 +147,6 @@ main {
     background: #fff;
     padding: 1.5rem;
     border-radius: 10px;
-
-
 }
 
 /*Paginaçao acima e input de pesquisar//////////////////////////////////////*/
@@ -193,8 +184,6 @@ select {
     background: transparent;
 }
 
-
-
 /*tabela inteira*/
 .table-content {
     background-color: #fff;
@@ -207,7 +196,6 @@ select {
     border-collapse: collapse;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
 }
 
 /*colunas da tabela*/
@@ -218,7 +206,6 @@ select {
     text-align: center;
     font-size: 16px;
 }
-
 .table th {
     background-color: #13508d;
     color: #ffffff;
@@ -258,10 +245,8 @@ select {
     font-size: 20px;
     font-weight: 450;
     color: #1374d5;
-
     align-items: center;
     justify-content: center;
-
 }
 
 .add-icone {
@@ -327,7 +312,6 @@ pendente*/
     background: #00bfff;
     color: white;
     border-color: #00bfff;
-
 }
 
 .pagination li a {
@@ -354,7 +338,6 @@ pendente*/
     display: flex;
     align-content: center;
     align-items: center;
-
 }
 
 select {
@@ -370,7 +353,6 @@ select {
     padding: 8px;
     margin: 0 0 0 20px;
     border-radius: 3px;
-
 }
 
 .field {
@@ -385,7 +367,6 @@ select {
     /*para ele cobrir a tela inteira*/
     height: 100%;
     /*para cobrir a altura inteira */
-
     background: rgba(0, 0, 0, 0.2);
     /*para a tela ficar cinza*/
     position: fixed;
@@ -393,13 +374,10 @@ select {
     /*para ficar sempre fixo no mesmo lugar da esquarda e do topo da tela*/
     top: 0;
     left: 0;
-
     display: grid;
     place-items: center;
-
     opacity: 0;
     pointer-events: none;
-
     transition: opacity 0.15s;
 }
 
@@ -407,24 +385,19 @@ select {
     background: #FFF;
     width: 0px;
     height: 0px;
-
     padding: 15px;
     /*afastar o conteudo das bordas*/
     border-radius: 7px;
     box-shadow: 0 0 10px 0 #00000070;
     /*os numeros significam a posiçao daa sombra */
-
     overflow: hidden;
     transition: width 0.15s, height 0.15s;
-
 }
 
 .modal-show>.modal {
-
-
     width: 400px;
     /*para ele cobrir a tela inteira*/
-    height: 470px;
+    height: 670px;
     /*para cobrir a altura inteira */
     overflow: auto;
 }
@@ -435,8 +408,6 @@ select {
     pointer-events: auto;
 
 }
-
-
 
 .modal-header {
     font-size: 1.5rem;
@@ -476,14 +447,12 @@ select {
     column-gap: 15px;
 }
 
-
 /*formulario do modal*/
 .header-form {
     background: linear-gradient(120deg, #3acbf0 0%, #8bb0ff 100%);
     padding: 10px;
     text-align: center;
     color: #FFF;
-
 }
 
 .form {
@@ -531,15 +500,12 @@ select {
 
 .form-content.error input {
     border-color: red;
-
 }
 
 .form-content.error a {
     color: red;
     visibility: visible;
 }
-
-
 
 /*responsividade do modal*/
 @media screen and (max-width: 500px) {
@@ -548,16 +514,13 @@ select {
     }
 }
 
-
 /*responsividade*/
-
 @media (max-width: 550px) {
     .logo-white {
         display: flex;
         width: 220px;
         height: 70px;
     }
-
 
     .sidebar.close {
         display: none;
@@ -580,9 +543,7 @@ select {
         width: 350px;
         background-color: none;
         margin-top: 90px;
-
     }
-
 
     .header-mobile {
         display: block;
@@ -590,11 +551,8 @@ select {
 
     main {
         left: 0;
-
     }
-
 }
-
 
 /*responsividade da tabela*/
 @media(max-width:798px) {
@@ -643,6 +601,4 @@ select {
     .main-title {
         margin-left: 60px;
     }
-
-
 }

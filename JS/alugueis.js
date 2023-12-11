@@ -91,7 +91,6 @@ if (pageli && pageli.length > 0) {
 			pageRunner(pagelink, val, lastpage, pageli);
 		 }
 	
-		
 		function pageMaker(index, item_per_page, activePage){
 			const start = item_per_page * index;
 			const end  = start + item_per_page;
@@ -104,10 +103,6 @@ if (pageli && pageli.length > 0) {
 			Array.from(activePage).forEach((e)=>{e.classList.remove("active");});
      		activePage[index-1].classList.add("active");
 		}
-
-
-
-
 
 		// search content 
 		var search = document.getElementById("search");
