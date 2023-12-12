@@ -90,7 +90,7 @@ $logado = $_SESSION['admsistema'];
                     </li>
 
                     <li class="nav-link">
-                        <a href="../HTML/Alugueis.php"><i class="bi bi-journal-check icon"></i>
+                        <a href="../HTML/Aluguel.php"><i class="bi bi-journal-check icon"></i>
                             <span class="text nav-text">Aluguéis</span>
                         </a>
                     </li>
@@ -147,7 +147,7 @@ $logado = $_SESSION['admsistema'];
         <button>
             <span>
                 <button class="mobile-link"> <i class="bi bi-journal-bookmark-fill icon"></i><a
-                        href="../HTML/Alugueis.php">Aluguéis</a></button>
+                        href="../HTML/Aluguel.php">Aluguéis</a></button>
             </span>
         </button>
 

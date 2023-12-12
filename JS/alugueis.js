@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function () {
 //paginação
 var tbody = document.querySelector("tbody");
 		var pageUl = document.querySelector(".pagination");
@@ -117,7 +117,7 @@ if (pageli && pageli.length > 0) {
 				}
 			}
 		}
-
+	});
 	
 
 		

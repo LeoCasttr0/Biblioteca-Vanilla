@@ -635,7 +635,7 @@ select {
     margin: auto;
 }
 
-/*modal **/
+/*CSS DO MODAL **/
 .modal-container {
     width: 100%;
     /*para ele cobrir a tela inteira*/
@@ -737,9 +737,10 @@ select {
     position: relative;
 }
 
+
 .form-content label {
     display: inline-block;
-    margin-bottom: 4px;
+    margin-bottom: 10px;
 }
 
 .form-content input {
@@ -749,6 +750,7 @@ select {
     padding: 10px;
     border: 2px solid #dfdfdf;
 }
+
 
 .form-content a {
     position: absolute;
@@ -779,14 +781,6 @@ select {
     color: red;
     visibility: visible;
 }
-
-
-footer{
-    margin-left: 450px;
-    margin-top: 90px;
-    position: fixed;
-}
-
 
 
 /*responsividade do modal*/
