@@ -309,7 +309,7 @@ $result = $conexao->query($sql);
                     <div class="form-content" method="get">
                         <label for="Livro">Nome do Livro</label>
 
-                        <select name="fklivro">
+                        <select name="fklivro" class="select-Spacing">
                             <?php
                             while ($dadosLivro = mysqli_fetch_assoc($resultLIVROS)) {
                                 ?>
@@ -320,55 +320,59 @@ $result = $conexao->query($sql);
                             }
                             ?>
                         </select>
+                    </div>
 
-                        <!--select de Editoras-->
-                        <div class="form-content" method="get">
-                            <label for="Editora">Editora</label>
+                    <!--select de Editoras-->
+                    <div class="form-content" method="get">
+                        <label for="Editora">Editora</label>
 
-                            <select name="fkeditora">
-                                <?php
-                                while ($dados = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                    <option value="<?php echo $dados['id'] ?>">
-                                        <?php echo $dados['nomeeditora'] ?>
-                                    </option>
-                                    <?php
-                                }
+                        <select name="fkeditora" class="select-Spacing">
+                            <?php
+                            while ($dados = mysqli_fetch_assoc($result)) {
                                 ?>
-                            </select>
+                                <option value="<?php echo $dados['id'] ?>">
+                                    <?php echo $dados['nomeeditora'] ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
 
-                            <!--select de Usuarios-->
+                    <!--select de Usuarios-->
 
-                            <div class="form-content" method="get">
-                                <label for="Editora">Nome do Usuário</label>
+                    <div class="form-content" method="get">
+                        <label for="Editora">Nome do Usuário</label>
 
-                                <select name="fkUsuario">
-                                    <?php
-                                    while ($dadosUsuario = mysqli_fetch_assoc($resultUSUARIOS)) {
-                                        ?>
-                                        <option value="<?php echo $dadosUsuario['iduser'] ?>">
-                                            <?php echo $dadosUsuario['nomeuser'] ?>
-                                        </option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
+                        <select name="fkUsuario">
+                            <?php
+                            while ($dadosUsuario = mysqli_fetch_assoc($resultUSUARIOS)) {
+                                ?>
+                                <option value="<?php echo $dadosUsuario['iduser'] ?>">
+                                    <?php echo $dadosUsuario['nomeuser'] ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
 
-                                <div class="form-content">
-                                    <label for="Datealuguel">Data do Aluguel</label>
-                                    <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
-
-                                    
-                                </div>
+                    <div class="form-content">
+                        <label for="Datealuguel">Data do Aluguel</label>
+                        <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
 
 
-                                <div class="form-content">
-                                    <label for="Datealuguel">Data de Devolução</label>
-                                    <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
+                    </div>
 
-                                  
-                                </div>
-                                <button type="submit" name="submit-usuario" id="submit">Cadastrar</button>
+
+                    <div class="form-content">
+                        <label for="Datealuguel">Data de Devolução</label>
+                        <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
+
+
+                    </div>
+                    <button type="submit" name="submit-usuario" id="submit">Cadastrar</button>
+
                 </form>
             </div>
         </div>

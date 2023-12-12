@@ -670,7 +670,7 @@ select {
 
 .modal-show>.modal {
     width: 450px;
-    height: 570px;
+    height: 530px;
 }
 
 /*classe para o modal aparecer*/
@@ -737,6 +737,14 @@ select {
     position: relative;
 }
 
+.form-content select {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid #dfdfdf;
+    margin-bottom: 10px; /* Adicione esta linha para criar um espaçamento entre os selects */
+}
 
 .form-content label {
     display: inline-block;
