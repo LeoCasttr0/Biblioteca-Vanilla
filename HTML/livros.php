@@ -246,8 +246,9 @@ $result = $conexao->query($sql);
                             $ideditora = $user_data['codeeditora'];
                             $sqleditora = "select * from editoras where id = '$ideditora' ";
                             $resulteditora = $conexao->query($sqleditora);
-
                             $editora_data = mysqli_fetch_assoc($resulteditora);
+
+
                             echo "<tr>";
                             echo "<td data-label='ID'>" . $user_data['idlivro'] . "</td>";
 

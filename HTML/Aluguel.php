@@ -4,23 +4,18 @@
 // Caminho do config php (local onde está nosso banco de dados)
 include_once('../config.php');
 
-if (isset($_POST['submit-usuario'])) {
+if (isset($_POST['submit-aluguel'])) {
 
-    $Usuario = $_POST['usuario'];
-    $Email = $_POST['Email'];
+    $ChaveLivro = $_POST['fklivro'];
+    $ChaveEditora = $_POST['fkeditora'];
+    $ChaveUsuario = $_POST['fkUsuario'];
+    $DataAluguel = $_POST['Datealuguel'];
+    $DataDevolucao = $_POST['Devolucao'];
 
-    $result = mysqli_query($conexao, "INSERT INTO usuarios (nomeuser,emailuser) VALUES ('$Usuario','$Email')");
-
+    $result = mysqli_query($conexao, "INSERT INTO alugueis (codelivros,codeeditora,codeusuarios,dataaluguel,datadevolu) VALUES ('$ChaveLivro','$ChaveEditora','$ChaveUsuario','$DataAluguel','$DataDevolucao')");
 }
 
-if (!empty($_GET['search'])) {
-    $data = $_GET['search'];
-    $sql = "SELECT * FROM usuarios WHERE iduser LIKE '%$data%' or nomeuser LIKE '%$data%' or emailuser LIKE '%$data%' ORDER BY iduser DESC";
-} else {
-    // Consulta padrão se não houver pesquisa
-    $sql = "SELECT * FROM usuarios ORDER BY iduser DESC";
-}
-
+$sql = "SELECT * FROM alugueis ORDER BY idaluguel DESC";
 $result = $conexao->query($sql);
 
 ?>
@@ -209,7 +204,7 @@ $result = $conexao->query($sql);
                         <th>ID</th>
                         <th>Usuário</th>
                         <th>Livro</th>
-                        <th>Editora</th>
+                        <th>Email</th>
                         <th> Data do Aluguel</th>
                         <th>Data de Devolução</th>
                         <th>Status</th>
@@ -217,51 +212,45 @@ $result = $conexao->query($sql);
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td data-label="ID">1</td>
-                            <td data-label="Usuário">Armando Couto</td>
-                            <td data-label="Livro">Computação Evolucionária</td>
-                            <td data-label="Editora">Casa do Código</td>
-                            <td data-label="Data do Aluguel">01/09</td>
-                            <td data-label="Data de Devolução">15/09</td>
-                            <td data-label="Status"><button class="status-btn ontime">No Prazo</button></td>
-                            <td data-label="Ações">
-                                <i class='edit bi bi-pencil-fill'></i>
-                                <i class="book bi bi-file-check-fill"></i>
-                                <i class="trash bi bi-trash3-fill"></i>
-                            </td>
-                        </tr>
+                        <?php
+                        while ($user_data = mysqli_fetch_assoc($result)) {
+                            $iduser = $user_data['codeusuarios'];
+                            $sqluser = "select * from usuarios where iduser = '$iduser' ";
+                            $resultuser = $conexao->query($sqluser);
+                            $usuario_data = mysqli_fetch_assoc($resultuser);
 
-                        <tr>
-                            <td data-label="ID">2</td>
-                            <td data-label="Usuário">Lucas Camelo</td>
-                            <td data-label="Livro">Python e R para o Cientista de Dados Moderno</td>
-                            <td data-label="Editora">Casa do Código</td>
-                            <td data-label="Data do Aluguel">10/09</td>
-                            <td data-label="Data de Devolução">30/09</td>
-                            <td data-label="Status"><button class="status-btn ontime">No Prazo</button></td>
-                            <td data-label="Ações">
-                                <i class='edit bi bi-pencil-fill'></i>
-                                <i class="book bi bi-file-check-fill"></i>
-                                <i class="trash bi bi-trash3-fill"></i>
-                            </td>
-                        </tr>
+                            $idlivro = $user_data['codelivros'];
+                            $sqllivro = "select * from livros where idlivro = '$idlivro' ";
+                            $resultlivro = $conexao->query($sqllivro);
+                            $livro_data = mysqli_fetch_assoc($resultlivro);
 
-                        <tr>
-                            <td data-label="ID">3</td>
-                            <td data-label="Usuário">Rayane Marusca</td>
-                            <td data-label="Livro">Guia da Startup</td>
-                            <td data-label="Editora">Casa do Código</td>
-                            <td data-label="Data do Aluguel">01/09</td>
-                            <td data-label="Data de Devolução">30/09</td>
-                            <td data-label="Status"><button class="status-btn late">Atrasado</button></td>
-                            <td data-label="Ações">
-                                <i class='edit bi bi-pencil-fill'></i>
-                                <i class="book bi bi-file-check-fill"></i>
-                                <i class="trash bi bi-trash3-fill"></i>
-                            </td>
-                        </tr>
+                            $ideditora = $user_data['codeeditora'];
+                            $sqleditora = "select * from editoras where id = '$ideditora' ";
+                            $resulteditora = $conexao->query($sqleditora);
+                            $editora_data = mysqli_fetch_assoc($resulteditora);
 
+                            echo "<tr>";
+                            echo "<td data-label='ID'>" . $user_data['idaluguel'] . "</td>";
+
+                            echo "<td  data-label='Usuario'>" . $usuario_data['nomeuser'] . "</td>";
+                            echo "<td  data-label='Autor'>" . $livro_data['nomelivro'] . "</td>";
+                            echo "<td  data-label='Editora'>" . $user_data['codeeditora'] . "</td>";
+                            echo "<td  data-label='Quantidade'>" . $user_data['dataaluguel'] . "</td>";
+                            echo "<td  data-label='Alugado'>" . $user_data['datadevolu'] . "</td>";
+                            echo "<td  data-label='Ações'>
+
+                            <a href='editLivros.php?idaluguel=$user_data[idaluguel]'>
+                            <i class='edit bi bi-pencil-fill'></i>
+                        </a>
+ 
+                        <a href='deleteLivros.php?idaluguel=$user_data[idaluguel]'>
+                        <i class='trash bi bi-trash3-fill'></i>
+                        </a>
+                        
+                </td>";
+                            echo "</tr>"; // Fechamento da linha para cada registro
+                        
+                        } ?>
                     </tbody>
                 </table>
                 <!--Paginaçao-->
@@ -302,7 +291,6 @@ $result = $conexao->query($sql);
                 </section>
 
                 <!--corpo do form-->
-
                 <!--select de livros-->
                 <form class="form" action="Aluguel.php" method="POST">
 
@@ -310,6 +298,7 @@ $result = $conexao->query($sql);
                         <label for="Livro">Nome do Livro</label>
 
                         <select name="fklivro" class="select-Spacing">
+                            <option value="selecione" selected> Selecione um Livro  </option>
                             <?php
                             while ($dadosLivro = mysqli_fetch_assoc($resultLIVROS)) {
                                 ?>
@@ -345,6 +334,7 @@ $result = $conexao->query($sql);
                         <label for="Editora">Nome do Usuário</label>
 
                         <select name="fkUsuario">
+                        <option value="selecione" selected> Selecione um Usuário </option>
                             <?php
                             while ($dadosUsuario = mysqli_fetch_assoc($resultUSUARIOS)) {
                                 ?>
@@ -360,18 +350,13 @@ $result = $conexao->query($sql);
                     <div class="form-content">
                         <label for="Datealuguel">Data do Aluguel</label>
                         <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
-
-
                     </div>
-
 
                     <div class="form-content">
                         <label for="Datealuguel">Data de Devolução</label>
-                        <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
-
-
+                        <input type="date" id="Devolucao" name="Devolucao" min="2023-11-10">
                     </div>
-                    <button type="submit" name="submit-usuario" id="submit">Cadastrar</button>
+                    <button type="submit" name="submit-aluguel" id="submit">Cadastrar</button>
 
                 </form>
             </div>

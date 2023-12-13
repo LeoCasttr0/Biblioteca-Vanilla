@@ -228,7 +228,7 @@ $result = $conexao->query($sql);
                 <i class='edit bi bi-pencil-fill'></i>
             </a>
 
-            <a href='../DELETE/delete.php?id=$user_data[id]'>
+            <a href='delete.php?id=$user_data[id]'>
             <i class='trash bi bi-trash3-fill'></i>
             </a>
                           </td>";

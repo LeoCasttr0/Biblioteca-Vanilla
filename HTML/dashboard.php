@@ -200,9 +200,19 @@ $logado = $_SESSION['admsistema'];
                     <div class="card-header">
                         <div class="amount">
                             <span class="title">
-                                Total de Livros </span>
+                                Total de Editoras </span>
                             <span class="amount-value">
-                                5
+
+                            <?php 
+                            include_once('../config.php');
+$dash_card_query = "SELECT * from editoras";
+$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+
+if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+    echo  $category_total;
+}
+?>
+
                             </span>
                         </div>
                         <i class="fa-solid fa-book icone-card"></i>
@@ -214,9 +224,17 @@ $logado = $_SESSION['admsistema'];
                     <div class="card-header">
                         <div class="amount">
                             <span class="title">
-                                Total de Aluguéis </span>
+                                Total de Usuários </span>
                             <span class="amount-value">
-                                5
+                            <?php 
+                            include_once('../config.php');
+$dash_card_query = "SELECT * from usuarios";
+$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+
+if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+    echo  $category_total;
+}
+?>
                             </span>
                         </div>
                         <i class="fa-solid fa-book-open-reader icone-card"></i>
@@ -228,9 +246,17 @@ $logado = $_SESSION['admsistema'];
                     <div class="card-header">
                         <div class="amount">
                             <span class="title">
-                                Total de Usuários </span>
+                                Total de Livros </span>
                             <span class="amount-value">
-                                5
+                            <?php 
+                            include_once('../config.php');
+$dash_card_query = "SELECT * from livros";
+$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+
+if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+    echo  $category_total;
+}
+?>
                             </span>
                         </div>
                         <i class="fa-solid fa-users icone-card"></i>
@@ -242,9 +268,17 @@ $logado = $_SESSION['admsistema'];
                     <div class="card-header">
                         <div class="amount">
                             <span class="title">
-                                Total de Editoras </span>
+                                Total de Aluguéis </span>
                             <span class="amount-value">
-                                4
+                            <?php 
+                            include_once('../config.php');
+$dash_card_query = "SELECT * from alugueis";
+$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+
+if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+    echo  $category_total;
+}
+?>
                             </span>
                         </div>
                         <i class="fa-solid fa-store icone-card"></i>
