@@ -14,9 +14,16 @@ if (isset($_POST['submit-aluguel'])) {
     $result = mysqli_query($conexao, "INSERT INTO alugueis (codelivros,codeusuarios,dataaluguel,datadevolu) VALUES ('$ChaveLivro','$ChaveUsuario','$DataAluguel','$DataDevolucao')");
 }
 
-$sql = "SELECT * FROM alugueis ORDER BY idaluguel DESC";
-$result = $conexao->query($sql);
 
+if (!empty($_GET['search'])) {
+    $data = $_GET['search'];
+    $sql = "SELECT * FROM alugueis WHERE idaluguel LIKE '%$data%' or codelivros LIKE '%$data%' or codeusuarios LIKE '%$data%' ORDER BY idaluguel DESC";
+} else {
+    // Consulta padrão se não houver pesquisa
+    $sql = "SELECT * FROM alugueis ORDER BY idaluguel DESC";
+}
+
+$result = $conexao->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -234,7 +241,7 @@ $result = $conexao->query($sql);
                             echo "<td  data-label='Ações'>
 
                              <td data-label='Ações'>
-                            <a href='editAluguel.php?idaluguel={$user_data['idaluguel']}'>
+                            <a href='editaluguel.php?idaluguel={$user_data['idaluguel']}'>
                                 <i class='edit bi bi-pencil-fill'></i>
                             </a>
                             
@@ -346,7 +353,7 @@ $result = $conexao->query($sql);
     </main>
 
     <!--JS-->
-    <script src="../JS/pesquisar.js"></script>
+    <script src="../JS/pesquisarAluguel.js"></script>
     <script src="../JS/modal.js"></script>
     <script src="../sidebar/sidebar.js"></script>
     <script src="../JS/alugueis.js"></script>

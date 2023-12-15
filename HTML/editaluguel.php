@@ -13,11 +13,10 @@ if (!empty($_GET['idaluguel'])) {
     if ($result->num_rows > 0) {
 
         while ($user_data = mysqli_fetch_assoc($result)) {
-            $ChaveLivro = $user_data['fklivro'];
-            $ChaveUsuario = $user_data['fkUsuario'];
-            $DataAluguel = $user_data['Datealuguel'];
-            $DataDevolucao = $user_data['Devolucao'];
-           
+            $ChaveLivro = $user_data['codelivros'];
+            $ChaveUsuario = $user_data['codeusuarios'];
+            $DataAluguel = $user_data['dataaluguel'];
+            $DataDevolucao = $user_data['datadevolu'];
         }
 
     } else {
@@ -26,6 +25,8 @@ if (!empty($_GET['idaluguel'])) {
 } else {
     header('Location: Aluguel.php');
 }
+
+
 
 ?>
 
@@ -42,6 +43,23 @@ if (!empty($_GET['idaluguel'])) {
 
 <body>
 
+<!--php pra chamar resultados do banco de dados para o formulário-->
+<?php
+        require '../config.php';
+        $sql = "select * from editoras;";
+        $result = mysqli_query($conexao, $sql); ?>
+
+        <?php
+        require '../config.php';
+        $sql = "select * from usuarios;";
+        $resultUSUARIOS = mysqli_query($conexao, $sql); ?>
+
+        <?php
+        require '../config.php';
+        $sql = "select * from livros;";
+        $resultLIVROS = mysqli_query($conexao, $sql); ?>
+        <!--fim-->
+
 
     <!--Modal Formulario--->
     <div class="modal-container">
@@ -54,7 +72,7 @@ if (!empty($_GET['idaluguel'])) {
 
             <!--corpo do form-->
             <!--select de livros-->
-            <form class="form" action="Aluguel.php" method="POST">
+            <form class="form" action="saveAluguel.php" method="POST">
 
                 <div class="form-content" method="get">
                     <label for="Livro">Nome do Livro</label>
@@ -73,14 +91,12 @@ if (!empty($_GET['idaluguel'])) {
                     </select>
                 </div>
 
-
-
                 <!--select de Usuarios-->
 
                 <div class="form-content" method="get">
                     <label for="Editora">Nome do Usuário</label>
 
-                    <select name="fkUsuario">
+                    <select name="fkUsuario" value="<?php echo $ChaveUsuario ?>" required>
                         <option value="selecione" selected> Selecione um Usuário </option>
                         <?php
                         while ($dadosUsuario = mysqli_fetch_assoc($resultUSUARIOS)) {
@@ -96,14 +112,18 @@ if (!empty($_GET['idaluguel'])) {
 
                 <div class="form-content">
                     <label for="Datealuguel">Data do Aluguel</label>
-                    <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
+                    <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10" value="<?php echo $DataAluguel ?>" required>
+
                 </div>
 
                 <div class="form-content">
                     <label for="Datealuguel">Data de Devolução</label>
-                    <input type="date" id="Devolucao" name="Devolucao" min="2023-11-10">
+                    <input type="date" id="Devolucao" name="Devolucao" min="2023-11-10" value="<?php echo $DataDevolucao ?>" required>
+
                 </div>
-                <button type="submit" name="submit-aluguel" id="submit">Cadastrar</button>
+
+                <input type="hidden" name="idaluguel" value="<?php echo $id ?>">
+                <button type="submit" name="update-aluguel" id="update-aluguel">Cadastrar</button>
 
             </form>
         </div>
