@@ -663,14 +663,14 @@ select {
     /*afastar o conteudo das bordas*/
     border-radius: 7px;
     box-shadow: 0 0 10px 0 #00000070;
-    /*os numeros significam a posiçao daa sombra */
-    overflow: hidden;
+    /*os numeros significam a posiçao da sombra */
     transition: width 0.15s, height 0.15s;
 }
 
 .modal-show>.modal {
     width: 450px;
-    height: 530px;
+    height: 630px;
+    overflow: auto;
 }
 
 /*classe para o modal aparecer*/
@@ -717,14 +717,12 @@ select {
     column-gap: 15px;
 }
 
-
 /*formulario do modal*/
 .header-form {
     background: linear-gradient(120deg, #3acbf0 0%, #8bb0ff 100%);
     padding: 10px;
     text-align: center;
     color: #FFF;
-
 }
 
 .form {
@@ -776,7 +774,7 @@ select {
     border: 0;
     font-size: 20px;
     cursor: pointer;
-    margin-top: 14px;
+    margin-top: 8px;
 
 }
 
@@ -797,7 +795,6 @@ select {
         flex-wrap: wrap;
     }
 }
-
 
 /*responsividade*/
 

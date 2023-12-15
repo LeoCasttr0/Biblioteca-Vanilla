@@ -75,7 +75,7 @@ $result = $conexao->query($sql);
                         </a>
                     </li>
 
-        
+
                     <li class="nav-link">
                         <a href="../HTML/Editoras.php"><i class="bi bi-shop icon"></i>
                             <span class="text nav-text">Editoras</span>
@@ -224,13 +224,13 @@ $result = $conexao->query($sql);
                             echo "<td  data-label='Editora'>" . $user_data['nomeeditora'] . "</td>";
                             echo "<td  data-label='Cidade'>" . $user_data['cidadeeditora'] . "</td>";
                             echo "<td  data-label='Ações'>
-            <a href='edit.php?id=$user_data[id]'>
-                <i class='edit bi bi-pencil-fill'></i>
-            </a>
+                             <a href='edit.php?id=$user_data[id]'>
+                              <i class='edit bi bi-pencil-fill'></i>
+                             </a>
 
-            <a href='delete.php?id=$user_data[id]'>
-            <i class='trash bi bi-trash3-fill'></i>
-            </a>
+                            <a href='delete.php?id=$user_data[id]'>
+                             <i class='trash bi bi-trash3-fill'></i>
+                          </a>
                           </td>";
                             echo "</tr>"; // Fechamento da linha para cada registro
                         } ?>
@@ -258,7 +258,7 @@ $result = $conexao->query($sql);
                 </section>
 
                 <!--corpo do form-->
-                <form id="form " action="Editoras.php" method="POST" class="form">
+                <form id="form" action="testValidacaoEditoras.php" method="POST" class="form">
 
                     <div class="form-content">
                         <label for="Editora">Nome da Editora</label>
@@ -278,78 +278,11 @@ $result = $conexao->query($sql);
             </div>
         </div>
 
-        <!--SWEET DE DELETAR 
-<script>
-Swal.fire({
-  title: 'Você tem certeza que quer Apagar este Registro?',
-  text: "assim que apagar, você não poderá recupera-lo!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Sim, Delete!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'Registro Deletado Com Sucesso!',
-    )
-  }
-})
-</script>-->
-
-        <!--SWEET DE REGISTRO SALVO 
-<script>
-    Swal.fire({
-  position: 'center',
-  icon: 'success',
-  title: 'Livro Registrado com Sucesso!',
-  showConfirmButton: false,
-  timer: 1500
-})
-</script>-->
-
-        <!--SWEET DE DELETAR MELHORADO 
-<script>
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
-})
-
-swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  reverseButtons: true
-}).then((result) => {
-  if (result.isConfirmed) {
-    swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your imaginary file is safe :)',
-      'error'
-    )
-  }
-})
-</script>-->
 
     </main>
 
     <!--JS-->
-    <script src="../JS/pesquisar.js"></script>
+    <script src="../JS/pesquisarEditora.js"></script>
     <script src="../JS/modal.js"></script>
     <script src="../sidebar/sidebar.js"></script>
     <script src="../JS/alugueis.js"></script>

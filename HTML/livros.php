@@ -17,17 +17,14 @@ if (isset($_POST['submit-livros'])) {
     $ChaveEditora = $_POST['fkeditora'];
     $Quantidade = $_POST['Quanti'];
     $Alugado = $_POST['Alug'];
-    
+
     $result = mysqli_query($conexao, "INSERT INTO livros (nomelivro,autorlivro,codeeditora,quantlivros,quantalug) VALUES ('$Livro','$Autor','$ChaveEditora', '$Quantidade', '$Alugado')");
 }
 
-$sql = "SELECT * FROM livros ORDER BY idlivro DESC";
-$result = $conexao->query($sql);
 
-//pesquisar livros
 if (!empty($_GET['search'])) {
     $data = $_GET['search'];
-    $sql = "SELECT * FROM livros WHERE idlivro LIKE '%$data%' or nomelivro LIKE '%$data%' or nomautor LIKE '%$data%' ORDER BY idlivro DESC";
+    $sql = "SELECT * FROM livros WHERE idlivro LIKE '%$data%' or nomelivro LIKE '%$data%' or autorlivro LIKE '%$data%' ORDER BY idlivro DESC";
 } else {
     // Consulta padrão se não houver pesquisa
     $sql = "SELECT * FROM livros ORDER BY idlivro DESC";
@@ -60,9 +57,6 @@ $result = $conexao->query($sql);
 </head>
 
 <body>
-
-
-
     <!--SIDEBAR-->
     <nav class="sidebar close">
         <header>
@@ -90,7 +84,6 @@ $result = $conexao->query($sql);
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-
 
                     <li class="nav-link">
                         <a href="../HTML/Editoras.php"><i class="bi bi-shop icon"></i>
@@ -224,7 +217,7 @@ $result = $conexao->query($sql);
                 </div>
                 <div class="search">
                     <h5>Procurar</h5>
-                    <input type="text" name="" id="search" placeholder="Digite Aqui">
+                    <input type="search" name="" id="search" placeholder="Digite Aqui">
                 </div>
             </section>
             <section class="field">
@@ -263,14 +256,15 @@ $result = $conexao->query($sql);
                             <i class='edit bi bi-pencil-fill'></i>
                         </a>
  
-                        <a href='deleteLivros.php?iduser=$user_data[idlivro]'>
+                        <a href='deleteLivros.php?idlivro=$user_data[idlivro]'>
                         <i class='trash bi bi-trash3-fill'></i>
                         </a>
                         
-                </td>";
+                         </td>";
                             echo "</tr>"; // Fechamento da linha para cada registro
                         
                         } ?>
+
                     </tbody>
                 </table>
                 <!--Paginaçao-->
@@ -299,7 +293,7 @@ $result = $conexao->query($sql);
                 </section>
 
                 <!--corpo do form-->
-                <form id="form " action="livros.php" method="POST" class="form">
+                <form id="form " action="validacaoLivros.php" method="POST" class="form">
 
                     <div class="form-content">
                         <label for="Livro">Nome do Livro</label>
@@ -318,8 +312,9 @@ $result = $conexao->query($sql);
 
                     <div class="form-content" method="get">
                         <label for="Editora">Editora</label>
-
+                       
                         <select name="fkeditora">
+                        <option value="selecione" selected> Selecione uma Editora </option>
                             <?php
                             while ($dados = mysqli_fetch_assoc($result)) {
                                 ?>
@@ -360,10 +355,9 @@ $result = $conexao->query($sql);
     </main>
     <!--JS-->
     <script src="../JS/modal.js"></script>
-    <script src="../JS/pesquisar.js"></script>
     <script src="../sidebar/sidebar.js"></script>
     <script src="../JS/alugueis.js"></script>
-
+    <script src="../JS/pesquisarLivro.js"></script>
 </body>
 
 </html>

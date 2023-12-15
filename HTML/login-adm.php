@@ -17,7 +17,7 @@
         </div>
 
         <div class="login-container">
-            <form action="testeLogin.php" method="POST">
+            <form action="testeLogin.php" id="FormLogin" method="POST" >
                 <img class="avatar" src="../Imagens/biblioteca-fixpay-website-favicon-color_03_.ico" alt="imagem do homem no computador">
                 <h2>Logue No Sistema</h2>
 
@@ -28,7 +28,8 @@
                 
                     <div>
                         <h5>Usuário</h5>
-                        <input class="input" name="admin" type="text">
+                        <input class="input" name="admin" type="text" id="Nomeuser" required >
+                       
                     </div>
                 </div>
 
@@ -38,7 +39,8 @@
                     </div>
                     <div>
                         <h5>Senha</h5>
-                        <input class="input" name="senha" type="password">
+                        <input class="input" name="senha" type="password"  id="Nomesenha" required>
+                        
                     </div>
                 </div>
 
@@ -48,6 +50,7 @@
     </div>
 
     <script src="../JS/login.js"></script>
+    <script src="../JS/validaçoes.js"></script>
 </body>
 
 </html>

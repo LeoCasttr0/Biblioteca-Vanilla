@@ -77,7 +77,9 @@ if (!empty($_GET['idlivro'])) {
                     <div class="form-content" method="get">
                         <label for="Editora">Editora</label>
 
-                        <select name="fkeditora"
+                        <select name="fkeditora">
+                        <option value="selecione" selected> Selecione uma Editora </option>
+                        
                         value=" <?php echo $ChaveEditora ?>" required>
                             <?php
                             while ($dados = mysqli_fetch_assoc($result)) {

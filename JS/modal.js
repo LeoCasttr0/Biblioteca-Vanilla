@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Formulário Modal
+  
+
+    /* Formulário Modal
     const form = document.getElementById("form");
     const username = document.getElementById("usuario");
     const email = document.getElementById("Email");
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Outras funções e validações...
+    
 
     function checkForm() {
         checkInputUsername();
@@ -89,8 +91,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const textMessage = formItem.querySelector("a");
         textMessage.innerText = "";
         formItem.className = "form-content";
-    }
+    }*/
 });
+
+
 
 
 

@@ -201,7 +201,7 @@ $result = $conexao->query($sql);
                 </div>
                 <div class="search">
                     <h5>Procurar</h5>
-                    <input type="text" name="" id="search" placeholder="Digite Aqui">
+                    <input type="search" name="" id="search" placeholder="Digite Aqui">
                 </div>
             </section>
             <section class="field">
@@ -258,7 +258,7 @@ $result = $conexao->query($sql);
                 </section>
 
                 <!--corpo do form-->
-                <form class="form" action="Usuarios.php" method="POST">
+                <form class="form" action="validacaoUsuarios.php" method="POST">
 
                     <div class="form-content">
                         <label for="usuario">Nome do Usuário</label>

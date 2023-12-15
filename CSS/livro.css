@@ -390,7 +390,7 @@ select {
     border-radius: 7px;
     box-shadow: 0 0 10px 0 #00000070;
     /*os numeros significam a posiçao daa sombra */
-    overflow: hidden;
+ overflow: auto;
     transition: width 0.15s, height 0.15s;
 }
 
@@ -406,7 +406,6 @@ select {
 .modal-show {
     opacity: 1;
     pointer-events: auto;
-
 }
 
 .modal-header {

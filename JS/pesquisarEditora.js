@@ -8,8 +8,7 @@ pesquisar.addEventListener("keydown", function (event) {
 });
 
 function searchData() {
-
   if (pesquisar.value.trim() !== "") {
-    window.location = 'Usuarios.php?search=' + encodeURIComponent(pesquisar.value);
+    window.location = 'Editoras.php?search=' + encodeURIComponent(pesquisar.value);
   }
 }

@@ -4,7 +4,6 @@ session_start();
 
 // Imprime o conteúdo da sessão para depuração (pode ser removido em produção)
 
-
 // Verifica se não existir uma sessão, redireciona para o login
 if (!isset($_SESSION['admsistema']) || !isset($_SESSION['senhasistema'])) {
     // Limpa as sessões existentes (se houver) - isso pode ser ajustado conforme necessário
@@ -69,7 +68,7 @@ $logado = $_SESSION['admsistema'];
                         </a>
                     </li>
 
-                
+
 
                     <li class="nav-link">
                         <a href="../HTML/Editoras.php"><i class="bi bi-shop icon"></i>
@@ -119,17 +118,18 @@ $logado = $_SESSION['admsistema'];
         </div>
     </nav>
 
-    <!--Menu Responsivo-->
+    <!--MENU RESPONSIVO-->
     <div class="header-responsive">
-
+        <!--BOATO DE ABRIR O MENU-->
         <button class="button-mobile" onclick="iconMenu()">
             <i class="bi bi-list"></i>
 
+            <!--LOGO BRANCA DO MENU-->
         </button>
         <img class="logo-white" src="../Imagens/biblioteca-fixpay-logo(white).png" alt="">
     </div>
 
-
+    <!--A NAV EM SI-->
     <nav class="menu-mobile" id="menu-mobile">
 
         <button class="close-button" onclick="iconMenu()">
@@ -178,16 +178,16 @@ $logado = $_SESSION['admsistema'];
     </nav>
 
 
-    <!--Conteudo principal da Dashboard-->
+    <!--Conteudo Principal da Dashboard-->
     <main>
         <div class="header-wrapper">
-            <!--cabeçalho dashboard-->
+            <!--Cabeçalho Dashboard-->
             <div class="header-title">
                 <h2>DASHBOARD <i class="fa-solid fa-square-poll-vertical"></i></h2>
             </div>
         </div>
 
-        <!--Container dos cards -->
+        <!--Container Dos Cards -->
         <div class="card-container">
             <div class="card-title">
                 <i class="fa-solid fa-circle-info icone"></i>
@@ -195,7 +195,7 @@ $logado = $_SESSION['admsistema'];
             </div>
 
             <div class="card-wrapper">
-                <!--Card livros-->
+                <!--CARD EDITORAS-->
                 <div class="payment-card">
                     <div class="card-header">
                         <div class="amount">
@@ -203,15 +203,16 @@ $logado = $_SESSION['admsistema'];
                                 Total de Editoras </span>
                             <span class="amount-value">
 
-                            <?php 
-                            include_once('../config.php');
-$dash_card_query = "SELECT * from editoras";
-$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+                                <!--PHP VALOR DO CARD DE EDITORAS-->
+                                <?php
+                                include_once('../config.php');
+                                $dash_card_query = "SELECT * from editoras";
+                                $dash_card_query_run = mysqli_query($conexao, $dash_card_query);
 
-if ($category_total = mysqli_num_rows($dash_card_query_run)) {
-    echo  $category_total;
-}
-?>
+                                if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+                                    echo $category_total;
+                                }
+                                ?>
 
                             </span>
                         </div>
@@ -219,28 +220,30 @@ if ($category_total = mysqli_num_rows($dash_card_query_run)) {
                     </div>
                 </div>
 
-                <!--Card alugueis-->
+                <!--CARD USUARIOS-->
                 <div class="payment-card">
                     <div class="card-header">
                         <div class="amount">
                             <span class="title">
                                 Total de Usuários </span>
                             <span class="amount-value">
-                            <?php 
-                            include_once('../config.php');
-$dash_card_query = "SELECT * from usuarios";
-$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
 
-if ($category_total = mysqli_num_rows($dash_card_query_run)) {
-    echo  $category_total;
-}
-?>
+                                <!--PHP VALOR DO CARD DE USUARIOS-->
+                                <?php
+                                include_once('../config.php');
+                                $dash_card_query = "SELECT * from usuarios";
+                                $dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+
+                                if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+                                    echo $category_total;
+                                }
+                                ?>
                             </span>
                         </div>
                         <i class="fa-solid fa-book-open-reader icone-card"></i>
                     </div>
 
-                    <!--Card usuarios-->
+                    <!--CARD LIVROS-->
                 </div>
                 <div class="payment-card">
                     <div class="card-header">
@@ -248,37 +251,41 @@ if ($category_total = mysqli_num_rows($dash_card_query_run)) {
                             <span class="title">
                                 Total de Livros </span>
                             <span class="amount-value">
-                            <?php 
-                            include_once('../config.php');
-$dash_card_query = "SELECT * from livros";
-$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
 
-if ($category_total = mysqli_num_rows($dash_card_query_run)) {
-    echo  $category_total;
-}
-?>
+                                <!--PHP VALOR DO CARD DE LIVROS-->
+                                <?php
+                                include_once('../config.php');
+                                $dash_card_query = "SELECT * from livros";
+                                $dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+
+                                if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+                                    echo $category_total;
+                                }
+                                ?>
                             </span>
                         </div>
                         <i class="fa-solid fa-users icone-card"></i>
                     </div>
                 </div>
 
-                <!--Card editoras-->
+                <!--CARD ALUGUEIS-->
                 <div class="payment-card">
                     <div class="card-header">
                         <div class="amount">
                             <span class="title">
                                 Total de Aluguéis </span>
                             <span class="amount-value">
-                            <?php 
-                            include_once('../config.php');
-$dash_card_query = "SELECT * from alugueis";
-$dash_card_query_run = mysqli_query($conexao, $dash_card_query);
 
-if ($category_total = mysqli_num_rows($dash_card_query_run)) {
-    echo  $category_total;
-}
-?>
+                                <!--PHP VALOR DO CARD DE ALUGUEIS-->
+                                <?php
+                                include_once('../config.php');
+                                $dash_card_query = "SELECT * from alugueis";
+                                $dash_card_query_run = mysqli_query($conexao, $dash_card_query);
+
+                                if ($category_total = mysqli_num_rows($dash_card_query_run)) {
+                                    echo $category_total;
+                                }
+                                ?>
                             </span>
                         </div>
                         <i class="fa-solid fa-store icone-card"></i>
@@ -287,6 +294,7 @@ if ($category_total = mysqli_num_rows($dash_card_query_run)) {
             </div>
         </div>
 
+        <!--CONTEUDOS TABELA E grafico-->
         <div class="graphBox">
             <div class="box">
                 <div class="title-graf">
@@ -318,6 +326,7 @@ if ($category_total = mysqli_num_rows($dash_card_query_run)) {
                 </section>
             </div>
 
+            <!--GRAFICO -->
             <div class="box">
                 <div class="title-graf">
                     <h2>Livros Mais Alugados</h2>
@@ -361,8 +370,10 @@ if ($category_total = mysqli_num_rows($dash_card_query_run)) {
         </div>
     </main>
 
+
     <!--JS da sidebar-->
     <script src="../sidebar/sidebar.js"></script>
+    <!--JS DASHBOARD-->
     <script src="../JS/Dashboard.js"></script>
     <!--script do js chart-->
 

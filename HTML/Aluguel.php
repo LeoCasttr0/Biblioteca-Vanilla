@@ -7,12 +7,11 @@ include_once('../config.php');
 if (isset($_POST['submit-aluguel'])) {
 
     $ChaveLivro = $_POST['fklivro'];
-    $ChaveEditora = $_POST['fkeditora'];
     $ChaveUsuario = $_POST['fkUsuario'];
     $DataAluguel = $_POST['Datealuguel'];
     $DataDevolucao = $_POST['Devolucao'];
 
-    $result = mysqli_query($conexao, "INSERT INTO alugueis (codelivros,codeeditora,codeusuarios,dataaluguel,datadevolu) VALUES ('$ChaveLivro','$ChaveEditora','$ChaveUsuario','$DataAluguel','$DataDevolucao')");
+    $result = mysqli_query($conexao, "INSERT INTO alugueis (codelivros,codeusuarios,dataaluguel,datadevolu) VALUES ('$ChaveLivro','$ChaveUsuario','$DataAluguel','$DataDevolucao')");
 }
 
 $sql = "SELECT * FROM alugueis ORDER BY idaluguel DESC";
@@ -29,6 +28,7 @@ $result = $conexao->query($sql);
     <title>Aluguéis</title>
     <link rel="stylesheet" href="../CSS/aluguel.css">
     <!--icone--->
+    <script src="https://kit.fontawesome.com/f0d9a2c6e8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="shortcut icon" type="imagex/png" href="../Imagens/biblioteca-fixpay-website-favicon-color_04_.ico">
 </head>
@@ -204,8 +204,7 @@ $result = $conexao->query($sql);
                         <th>ID</th>
                         <th>Usuário</th>
                         <th>Livro</th>
-                        <th>Email</th>
-                        <th> Data do Aluguel</th>
+                        <th>Data do Aluguel</th>
                         <th>Data de Devolução</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -224,31 +223,29 @@ $result = $conexao->query($sql);
                             $resultlivro = $conexao->query($sqllivro);
                             $livro_data = mysqli_fetch_assoc($resultlivro);
 
-                            $ideditora = $user_data['codeeditora'];
-                            $sqleditora = "select * from editoras where id = '$ideditora' ";
-                            $resulteditora = $conexao->query($sqleditora);
-                            $editora_data = mysqli_fetch_assoc($resulteditora);
-
+                       
                             echo "<tr>";
                             echo "<td data-label='ID'>" . $user_data['idaluguel'] . "</td>";
 
                             echo "<td  data-label='Usuario'>" . $usuario_data['nomeuser'] . "</td>";
                             echo "<td  data-label='Autor'>" . $livro_data['nomelivro'] . "</td>";
-                            echo "<td  data-label='Editora'>" . $user_data['codeeditora'] . "</td>";
                             echo "<td  data-label='Quantidade'>" . $user_data['dataaluguel'] . "</td>";
                             echo "<td  data-label='Alugado'>" . $user_data['datadevolu'] . "</td>";
                             echo "<td  data-label='Ações'>
 
-                            <a href='editLivros.php?idaluguel=$user_data[idaluguel]'>
-                            <i class='edit bi bi-pencil-fill'></i>
-                        </a>
- 
-                        <a href='deleteLivros.php?idaluguel=$user_data[idaluguel]'>
-                        <i class='trash bi bi-trash3-fill'></i>
-                        </a>
-                        
-                </td>";
-                            echo "</tr>"; // Fechamento da linha para cada registro
+                             <td data-label='Ações'>
+                            <a href='editAluguel.php?idaluguel={$user_data['idaluguel']}'>
+                                <i class='edit bi bi-pencil-fill'></i>
+                            </a>
+                            
+                            <a href='deleteAluguel.php?idaluguel={$user_data['idaluguel']}'>
+                                <i class='trash bi bi-trash3-fill'></i>
+                            </a>
+                            
+                            <a href='outraAcao.php?idaluguel={$user_data['idaluguel']}'>
+                                <i class='fa-solid fa-calendar-check' style='color: #35c318;'></i>
+                            </a>
+                        </td>"; // Fechamento da linha para cada registro
                         
                         } ?>
                     </tbody>
@@ -311,22 +308,7 @@ $result = $conexao->query($sql);
                         </select>
                     </div>
 
-                    <!--select de Editoras-->
-                    <div class="form-content" method="get">
-                        <label for="Editora">Editora</label>
-
-                        <select name="fkeditora" class="select-Spacing">
-                            <?php
-                            while ($dados = mysqli_fetch_assoc($result)) {
-                                ?>
-                                <option value="<?php echo $dados['id'] ?>">
-                                    <?php echo $dados['nomeeditora'] ?>
-                                </option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
+                    
 
                     <!--select de Usuarios-->
 

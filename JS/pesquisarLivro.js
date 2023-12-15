@@ -10,6 +10,6 @@ pesquisar.addEventListener("keydown", function (event) {
 function searchData() {
 
   if (pesquisar.value.trim() !== "") {
-    window.location = 'Usuarios.php?search=' + encodeURIComponent(pesquisar.value);
+    window.location = 'livros.php?search=' + encodeURIComponent(pesquisar.value);
   }
 }
