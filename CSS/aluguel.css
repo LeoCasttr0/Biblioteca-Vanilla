@@ -487,6 +487,14 @@ select {
     background-color: #f5f5f5;
 }
 
+.atrasado {
+    color: red;  /* ou qualquer outra cor desejada para atrasado */
+}
+
+.no-prazo {
+    color: green;  /* ou qualquer outra cor desejada para no prazo */
+}
+
 /*editar*/
 .edit {
     color: blue;
@@ -502,6 +510,11 @@ select {
     color: green;
 }
 
+
+button .devolvercheck{
+    border:none;
+    cursor: pointer;
+}
 /*atrasado,no prazo, pendente*/
 .status-btn {
     width: 120px;
@@ -533,6 +546,14 @@ select {
     color: #1374d5;
 }
 
+.devolver-icone {
+    cursor: pointer;
+    
+}
+
+.devolver-icone:hover {
+    color: #166103;
+}
 .open-modal-button {
     border: none;
     background: none;

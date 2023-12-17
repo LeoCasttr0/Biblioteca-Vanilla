@@ -24,6 +24,7 @@ if (!empty($_GET['search'])) {
 }
 
 $result = $conexao->query($sql);
+$mostrarIcones = true;
 ?>
 
 <!DOCTYPE html>
@@ -215,6 +216,7 @@ $result = $conexao->query($sql);
                         <th>Data de Devolução</th>
                         <th>Status</th>
                         <th>Ações</th>
+
                     </thead>
 
                     <tbody>
@@ -230,7 +232,7 @@ $result = $conexao->query($sql);
                             $resultlivro = $conexao->query($sqllivro);
                             $livro_data = mysqli_fetch_assoc($resultlivro);
 
-                       
+
                             echo "<tr>";
                             echo "<td data-label='ID'>" . $user_data['idaluguel'] . "</td>";
 
@@ -238,21 +240,41 @@ $result = $conexao->query($sql);
                             echo "<td  data-label='Autor'>" . $livro_data['nomelivro'] . "</td>";
                             echo "<td  data-label='Quantidade'>" . $user_data['dataaluguel'] . "</td>";
                             echo "<td  data-label='Alugado'>" . $user_data['datadevolu'] . "</td>";
-                            echo "<td  data-label='Ações'>
 
-                             <td data-label='Ações'>
-                            <a href='editaluguel.php?idaluguel={$user_data['idaluguel']}'>
-                                <i class='edit bi bi-pencil-fill'></i>
-                            </a>
-                            
-                            <a href='deleteAluguel.php?idaluguel={$user_data['idaluguel']}'>
-                                <i class='trash bi bi-trash3-fill'></i>
-                            </a>
-                            
-                            <a href='outraAcao.php?idaluguel={$user_data['idaluguel']}'>
-                                <i class='fa-solid fa-calendar-check' style='color: #35c318;'></i>
-                            </a>
-                        </td>"; // Fechamento da linha para cada registro
+                            //Status da Tabela
+                            echo '<td data-label="Status" class="';
+                            if (strtotime($user_data['dataaluguel'] . ' 23:59:59') > strtotime($user_data['datadevolu'] . ' 23:59:59')) {
+                                echo 'atrasado';
+                            } else {
+                                echo 'no-prazo';
+                            }
+                            echo '">';
+        
+                            if (strtotime($user_data['dataaluguel'] . ' 23:59:59') > strtotime($user_data['datadevolu'] . ' 23:59:59')) {
+                                echo '<span style="color: red; font-weight: bold;">Atrasado</span>';
+                            } else {
+                                echo '<span style="color: green; font-weight: bold;">No prazo</span>';
+                            }
+                            echo '</td>';
+//Açoes : apagar,devolver e deletar
+                            echo '<td data-label="Ações">
+                            <div id="conteudo_' . $user_data['idaluguel'] . '">
+                                <a href="editaluguel.php?idaluguel=' . $user_data['idaluguel'] . '">
+                                    <i class="edit bi bi-pencil-fill"></i>
+                                </a>
+                                
+                                <a href="deleteAluguel.php?idaluguel=' . $user_data['idaluguel'] . '" class="' . ($mostrarIcones ? '' : 'hidden-icons') . '">
+                                    <i class="trash bi bi-trash3-fill"></i>
+                                </a>
+                                
+                                <a>
+                                    <button onclick="escondeIcones(\'conteudo_' . $user_data['idaluguel'] . '\')" class="devolvercheck"> 
+                                        <i class="fa-solid fa-calendar-check devolver-icone" style="color: #35c318;"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </td>';
+                            // Fechamento da linha para cada registro
                         
                         } ?>
                     </tbody>
@@ -302,7 +324,7 @@ $result = $conexao->query($sql);
                         <label for="Livro">Nome do Livro</label>
 
                         <select name="fklivro" class="select-Spacing">
-                            <option value="selecione" selected> Selecione um Livro  </option>
+                            <option value="selecione" selected> Selecione um Livro </option>
                             <?php
                             while ($dadosLivro = mysqli_fetch_assoc($resultLIVROS)) {
                                 ?>
@@ -315,7 +337,7 @@ $result = $conexao->query($sql);
                         </select>
                     </div>
 
-                    
+
 
                     <!--select de Usuarios-->
 
@@ -323,7 +345,7 @@ $result = $conexao->query($sql);
                         <label for="Editora">Nome do Usuário</label>
 
                         <select name="fkUsuario">
-                        <option value="selecione" selected> Selecione um Usuário </option>
+                            <option value="selecione" selected> Selecione um Usuário </option>
                             <?php
                             while ($dadosUsuario = mysqli_fetch_assoc($resultUSUARIOS)) {
                                 ?>
@@ -352,11 +374,29 @@ $result = $conexao->query($sql);
         </div>
     </main>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    function escondeIcones(el) {
+        var divElement = document.getElementById(el);
+        var editIcon = divElement.querySelector('.edit');
+        var trashIcon = divElement.querySelector('.trash');
+    
+        if (editIcon && trashIcon) {
+            editIcon.style.display = 'none';
+            trashIcon.style.display = 'none';
+        }
+    }
+});
+</script>
+    
     <!--JS-->
-    <script src="../JS/pesquisarAluguel.js"></script>
-    <script src="../JS/modal.js"></script>
-    <script src="../sidebar/sidebar.js"></script>
-    <script src="../JS/alugueis.js"></script>
+ <!-- JS -->
+<script src="../JS/esconder.js"></script>
+<script src="../JS/pesquisarAluguel.js"></script>
+<script src="../JS/modal.js"></script>
+<script src="../sidebar/sidebar.js"></script>
+<script src="../JS/alugueis.js"></script>
+
 
 </body>
 
