@@ -294,6 +294,8 @@ body.dark .switch::before {
     border: 0;
 }
 
+
+
 .menu-mobile-img {
     padding: 10;
     width: 60%;
@@ -396,13 +398,6 @@ main{
     margin-bottom: 1rem;
 }
 
-.header-title {
-    color: #000000;
-}
-
-.header-title i {
-    color: #20b2aa;
-}
 
 /*card container*/
 .card-container {
@@ -410,6 +405,7 @@ main{
     background: #f8f6f6;
     padding: 2rem;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 .card-title {
@@ -446,7 +442,7 @@ main{
 }
 
 .main-title {
-    color: #1374d5;
+    color: #000000;
     font-size: 18px;
     margin-bottom: 8px;
 

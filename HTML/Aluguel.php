@@ -287,6 +287,8 @@ $mostrarIcones = true;
                                 <a href="devolver.php?idaluguel=' . $user_data['idaluguel'] . '">
                                 <i class="fa-solid fa-calendar-check devolver-icone" style="color: #35c318;"></i>
                                 </a>
+
+                                
                             </div>
                          </td>';
                             // Fechamento da linha para cada registro

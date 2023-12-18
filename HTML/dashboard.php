@@ -1,7 +1,7 @@
 <?php
 // Inicia a sessão
 session_start();
-
+include_once('../config.php');
 // Imprime o conteúdo da sessão para depuração (pode ser removido em produção)
 
 // Verifica se não existir uma sessão, redireciona para o login
@@ -18,6 +18,26 @@ if (!isset($_SESSION['admsistema']) || !isset($_SESSION['senhasistema'])) {
 // Se chegou até aqui, significa que as sessões estão definidas
 $logado = $_SESSION['admsistema'];
 
+if (isset($_POST['submit-livros'])) {
+
+    // print_r('Nome do Livro: '.$_POST['Livro']);
+    // print_r('<br>');
+    // print_r('Autor do Livro: '.$_POST['Autor']);
+    // print_r('<br>');
+    // print_r('Quantidade de Livro: '.$_POST['Quanti']);
+
+    $Livro = $_POST['Livro'];
+    $Autor = $_POST['Autor'];
+    $ChaveEditora = $_POST['fkeditora'];
+    $Quantidade = $_POST['Quanti'];
+    $Alugado = $_POST['Alug'];
+
+    $result = mysqli_query($conexao, "INSERT INTO livros (nomelivro,autorlivro,codeeditora,quantlivros,quantalug) VALUES ('$Livro','$Autor','$ChaveEditora', '$Quantidade', '$Alugado')");
+}
+
+    // Consulta padrão se não houver pesquisa
+$sql = "SELECT * FROM livros ORDER BY idlivro DESC";
+$result = $conexao->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -29,10 +49,11 @@ $logado = $_SESSION['admsistema'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--css-->
     <link rel="stylesheet" href="../CSS/dash.css">
+    <link rel="stylesheet" href="../CSS/dashboardTabela.css">
     <link rel="stylesheet" href="../sidebar/sidebar.css">
     <!--icones-->
     <link rel="shortcut icon" type="imagex/png" href="../Imagens/biblioteca-fixpay-website-favicon-color_04_.ico">
-    <script src="https://kit.fontawesome.com/f0d9a2c6e8.js" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!--Titulo-->
@@ -295,82 +316,67 @@ $logado = $_SESSION['admsistema'];
         </div>
 
         <!--CONTEUDOS TABELA E grafico-->
-        <div class="graphBox">
-            <div class="box">
-                <div class="title-graf">
-                    <h2>Novos Livros</h2>
-                </div>
+        <div class="table-container">
+            <section class="header">
+                 <div class="main-title"> NOVOS LIVROS </div>
+                <div class="items-controller">
+                    <h5>Mostrar</h5>
+                    <select name="" id="itemperpage">
+                        <option value="5">05</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
 
-                <section class="field">
-                    <table class="table">
-                        <thead>
-                            <th>Título do Livro</th>
+                    </select>
+                    <h5>Por Página</h5>
+                </div>
+                
+            </section>
+            <section class="field">
+                <table class="table">
+                    <thead>
+
+                        <th>ID</th>
+                        <th>Título do Livro</th>
+                       
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        while ($user_data = mysqli_fetch_assoc($result)) {
+                            $ideditora = $user_data['codeeditora'];
+                            $sqleditora = "select * from editoras where id = '$ideditora' ";
+                            $resulteditora = $conexao->query($sqleditora);
+                            $editora_data = mysqli_fetch_assoc($resulteditora);
+
+
+                            echo "<tr>";
+                            echo "<td data-label='ID'>" . $user_data['idlivro'] . "</td>";
+
+                            echo "<td  data-label='Livro'>" . $user_data['nomelivro'] . "</td>";
                             
-                        </thead>
+                         
+                        
+                        } ?>
 
-                        <tbody>
-                            <tr>
-                                <td data-label="Título do Livro">Análise de dados com Phyton e Pandas</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Título do Livro">Análise de dados com Phyton e Pandas</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Título do Livro">Análise de dados com Phyton e Pandas</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-            </div>
-
-            <!--GRAFICO -->
-            <div class="box">
-                <div class="title-graf">
-                    <h2>Livros Mais Alugados</h2>
-
+                    </tbody>
+                </table>
+                <!--Paginaçao-->
+                <div class="bottom-field">
+                    <ul class="pagination">
+                        <li class="list prev"><a href="#" data-page="1">1</a></li>
+                        <li class="list next"><a href="#" data-page="2">2</a></li>
+                        <!-- Adicione mais elementos conforme necessário -->
+                    </ul>
                 </div>
-
-                <canvas id="grafico"></canvas>
-
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <script>
-                    const ctx = document.getElementById('grafico').getContext('2d');
-
-                    let Livros = ["Livro1", "Livro2", "Livro3"]
-                    let Valores = [10, 20, 30]
-
-                    new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: Livros,
-                            datasets: [{
-                                label: 'Total de Alugueis',
-                                data: Valores,
-                                backgroundColor: [
-                                    'rgba(0,206,209)',
-                                    'rgba(64,224,208)',
-                                    'rgba(72,209,204)',
-
-                                ]
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                </script>
-            </div>
+            </section>
         </div>
     </main>
 
 
     <!--JS da sidebar-->
+    <script src="https://kit.fontawesome.com/f0d9a2c6e8.js" crossorigin="anonymous"></script>
     <script src="../sidebar/sidebar.js"></script>
-  
+   <script src="../JS/alugueis.js"></script>
  
 
 </body>
