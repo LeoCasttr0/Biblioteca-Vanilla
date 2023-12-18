@@ -26,7 +26,6 @@ modeSwitch.addEventListener("click", () =>{
 });
 
 
-
 function iconMenu()
 {
     const menuMobile = document.getElementById("menu-mobile")
