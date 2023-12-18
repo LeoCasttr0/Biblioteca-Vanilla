@@ -316,7 +316,7 @@ $result = $conexao->query($sql);
         </div>
 
         <!--CONTEUDOS TABELA E grafico-->
-        <div class="table-container">
+      <div class="table-container">
             <section class="header">
                  <div class="main-title"> NOVOS LIVROS </div>
                 <div class="items-controller">

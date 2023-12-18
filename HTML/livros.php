@@ -7,7 +7,7 @@ include_once('../config.php');
 if (isset($_POST['submit-livros'])) {
 
     // print_r('Nome do Livro: '.$_POST['Livro']);
-    // print_r('<br>');
+    //  print_r('<br>');
     // print_r('Autor do Livro: '.$_POST['Autor']);
     // print_r('<br>');
     // print_r('Quantidade de Livro: '.$_POST['Quanti']);
@@ -18,7 +18,9 @@ if (isset($_POST['submit-livros'])) {
     $Quantidade = $_POST['Quanti'];
     $Alugado = $_POST['Alug'];
 
-    $result = mysqli_query($conexao, "INSERT INTO livros (nomelivro,autorlivro,codeeditora,quantlivros,quantalug) VALUES ('$Livro','$Autor','$ChaveEditora', '$Quantidade', '$Alugado')");
+    $result = mysqli_query($conexao, "INSERT INTO livros (nomelivro,autorlivro,codeeditora,quantlivros) VALUES ('$Livro','$Autor','$ChaveEditora', '$Quantidade'");
+
+
 }
 
 
@@ -229,7 +231,7 @@ $result = $conexao->query($sql);
                         <th>Autor</th>
                         <th>Editora</th>
                         <th>Quantidade Disponivel</th>
-                       
+
                         <th>Ações</th>
                     </thead>
 
@@ -249,7 +251,7 @@ $result = $conexao->query($sql);
                             echo "<td  data-label='Autor'>" . $user_data['autorlivro'] . "</td>";
                             echo "<td  data-label='Editora'>" . $editora_data['nomeeditora'] . "</td>";
                             echo "<td  data-label='Quantidade'>" . $user_data['quantlivros'] . "</td>";
-                            
+
                             echo "<td  data-label='Ações'>
 
                             <a href='editLivros.php?idlivro=$user_data[idlivro]'>
@@ -312,9 +314,9 @@ $result = $conexao->query($sql);
 
                     <div class="form-content" method="get">
                         <label for="Editora">Editora</label>
-                       
+
                         <select name="fkeditora">
-                        <option value="selecione" selected> Selecione uma Editora </option>
+                            <option value="selecione" selected> Selecione uma Editora </option>
                             <?php
                             while ($dados = mysqli_fetch_assoc($result)) {
                                 ?>
@@ -338,7 +340,7 @@ $result = $conexao->query($sql);
                         <a>Deu erroooo</a>
                     </div>
 
-                    
+
 
                     <button type="submit" name="submit-livros" id="submit">Cadastrar</button>
                 </form>
