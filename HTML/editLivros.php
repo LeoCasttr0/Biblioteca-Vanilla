@@ -17,7 +17,7 @@ if (!empty($_GET['idlivro'])) {
             $Autor = $user_data['autorlivro'];
             $ChaveEditora = $user_data['codeeditora'];
             $Quantidade = $user_data['quantlivros'];
-            $Alugado = $user_data['quantalug'];
+            
         }
 
     } else {
@@ -105,13 +105,7 @@ if (!empty($_GET['idlivro'])) {
                         <a>Deu erroooo</a>
                     </div>
 
-                    <div class="form-content">
-                        <label for="Quantidade">Quantidade Alugada deste Livro</label>
-                        <input type="number" id="Alug" name="Alug" placeholder="Digite quantidade alugada deste livro"  value="<?php echo $Alugado ?>" required>
-
-                        <!--modal-->
-                        <a>Deu erroooo</a>
-                    </div>
+                 
 
 
                     <input type="hidden" name="idlivro" value="<?php echo $id ?>">

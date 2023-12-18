@@ -298,28 +298,25 @@ $logado = $_SESSION['admsistema'];
         <div class="graphBox">
             <div class="box">
                 <div class="title-graf">
-                    <h2>Novos Usuários</h2>
+                    <h2>Novos Livros</h2>
                 </div>
 
                 <section class="field">
                     <table class="table">
                         <thead>
-                            <th>Usuário</th>
-                            <th> Data do Aluguel</th>
+                            <th>Título do Livro</th>
+                            
                         </thead>
 
                         <tbody>
                             <tr>
-                                <td data-label="Usuário">Leonardo Castro</td>
-                                <td data-label="Data do Aluguel">15/09</td>
+                                <td data-label="Título do Livro">Análise de dados com Phyton e Pandas</td>
                             </tr>
                             <tr>
-                                <td data-label="Usuário">Sabrine Marques</td>
-                                <td data-label="Data do Aluguel">10/09</td>
+                                <td data-label="Título do Livro">Análise de dados com Phyton e Pandas</td>
                             </tr>
                             <tr>
-                                <td data-label="Usuário">Ronald Alves</td>
-                                <td data-label="Data do Aluguel">01/09</td>
+                                <td data-label="Título do Livro">Análise de dados com Phyton e Pandas</td>
                             </tr>
                         </tbody>
                     </table>
@@ -373,9 +370,8 @@ $logado = $_SESSION['admsistema'];
 
     <!--JS da sidebar-->
     <script src="../sidebar/sidebar.js"></script>
-    <!--JS DASHBOARD-->
-    <script src="../JS/Dashboard.js"></script>
-    <!--script do js chart-->
+  
+ 
 
 </body>
 

@@ -228,8 +228,8 @@ $result = $conexao->query($sql);
                         <th>Nome</th>
                         <th>Autor</th>
                         <th>Editora</th>
-                        <th>Quantidade</th>
-                        <th>Total Alugado</th>
+                        <th>Quantidade Disponivel</th>
+                       
                         <th>Ações</th>
                     </thead>
 
@@ -249,7 +249,7 @@ $result = $conexao->query($sql);
                             echo "<td  data-label='Autor'>" . $user_data['autorlivro'] . "</td>";
                             echo "<td  data-label='Editora'>" . $editora_data['nomeeditora'] . "</td>";
                             echo "<td  data-label='Quantidade'>" . $user_data['quantlivros'] . "</td>";
-                            echo "<td  data-label='Alugado'>" . $user_data['quantalug'] . "</td>";
+                            
                             echo "<td  data-label='Ações'>
 
                             <a href='editLivros.php?idlivro=$user_data[idlivro]'>
@@ -338,13 +338,7 @@ $result = $conexao->query($sql);
                         <a>Deu erroooo</a>
                     </div>
 
-                    <div class="form-content">
-                        <label for="Quantidade">Quantidade Alugada deste Livro</label>
-                        <input type="number" id="Alug" name="Alug" placeholder="Digite quantidade alugada deste livro">
-
-                        <!--modal-->
-                        <a>Deu erroooo</a>
-                    </div>
+                    
 
                     <button type="submit" name="submit-livros" id="submit">Cadastrar</button>
                 </form>

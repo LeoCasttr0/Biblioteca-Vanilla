@@ -16,7 +16,7 @@ if (!empty($_GET['idaluguel'])) {
             $ChaveLivro = $user_data['codelivros'];
             $ChaveUsuario = $user_data['codeusuarios'];
             $DataAluguel = $user_data['dataaluguel'];
-            $DataDevolucao = $user_data['datadevolu'];
+            $Previsao = $user_data['previsaodevolucao'];
         }
 
     } else {
@@ -43,22 +43,22 @@ if (!empty($_GET['idaluguel'])) {
 
 <body>
 
-<!--php pra chamar resultados do banco de dados para o formulário-->
-<?php
-        require '../config.php';
-        $sql = "select * from editoras;";
-        $result = mysqli_query($conexao, $sql); ?>
+    <!--php pra chamar resultados do banco de dados para o formulário-->
+    <?php
+    require '../config.php';
+    $sql = "select * from editoras;";
+    $result = mysqli_query($conexao, $sql); ?>
 
-        <?php
-        require '../config.php';
-        $sql = "select * from usuarios;";
-        $resultUSUARIOS = mysqli_query($conexao, $sql); ?>
+    <?php
+    require '../config.php';
+    $sql = "select * from usuarios;";
+    $resultUSUARIOS = mysqli_query($conexao, $sql); ?>
 
-        <?php
-        require '../config.php';
-        $sql = "select * from livros;";
-        $resultLIVROS = mysqli_query($conexao, $sql); ?>
-        <!--fim-->
+    <?php
+    require '../config.php';
+    $sql = "select * from livros;";
+    $resultLIVROS = mysqli_query($conexao, $sql); ?>
+    <!--fim-->
 
 
     <!--Modal Formulario--->
@@ -110,16 +110,12 @@ if (!empty($_GET['idaluguel'])) {
                     </select>
                 </div>
 
-                <div class="form-content">
-                    <label for="Datealuguel">Data do Aluguel</label>
-                    <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10" value="<?php echo $DataAluguel ?>" required>
 
-                </div>
+        
 
                 <div class="form-content">
-                    <label for="Datealuguel">Data de Devolução</label>
-                    <input type="date" id="Devolucao" name="Devolucao" min="2023-11-10" value="<?php echo $DataDevolucao ?>" required>
-
+                    <label>Previsão de Devolução</label>
+                    <input type="date" id="Previsao" name="Previsao" value="<?php echo $Previsao ?>" required>
                 </div>
 
                 <input type="hidden" name="idaluguel" value="<?php echo $id ?>">

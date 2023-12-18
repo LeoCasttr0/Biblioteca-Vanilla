@@ -5,13 +5,19 @@
 include_once('../config.php');
 
 if (isset($_POST['submit-aluguel'])) {
-
+    $Hoje = date('Y/m/d');
     $ChaveLivro = $_POST['fklivro'];
     $ChaveUsuario = $_POST['fkUsuario'];
-    $DataAluguel = $_POST['Datealuguel'];
-    $DataDevolucao = $_POST['Devolucao'];
+    $DataAluguel = $Hoje;
+    $Previsao = $_POST['Previsao'];
 
-    $result = mysqli_query($conexao, "INSERT INTO alugueis (codelivros,codeusuarios,dataaluguel,datadevolu) VALUES ('$ChaveLivro','$ChaveUsuario','$DataAluguel','$DataDevolucao')");
+
+    // Atualizar o estoque ao alugar
+    $sqlUpdateEstoqueAlugar = "UPDATE livros SET quantlivros = quantlivros - 1 WHERE idlivro = '$ChaveLivro'";
+    $resultUpdateEstoqueAlugar = $conexao->query($sqlUpdateEstoqueAlugar);
+
+
+    $result = mysqli_query($conexao, "INSERT INTO alugueis (codelivros,codeusuarios,dataaluguel,previsaodevolucao) VALUES ('$ChaveLivro','$ChaveUsuario','$DataAluguel','$Previsao')");
 }
 
 
@@ -202,8 +208,9 @@ $mostrarIcones = true;
                     <h5>Por Página</h5>
                 </div>
                 <div class="search">
-                    <h5>Procurar</h5>
+                    <h5>Procure pelo ID</h5>
                     <input type="text" name="" id="search" placeholder="Digite Aqui">
+
                 </div>
             </section>
             <section class="field">
@@ -213,6 +220,7 @@ $mostrarIcones = true;
                         <th>Usuário</th>
                         <th>Livro</th>
                         <th>Data do Aluguel</th>
+                        <th>Previsão de Devolução</th>
                         <th>Data de Devolução</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -239,41 +247,48 @@ $mostrarIcones = true;
                             echo "<td  data-label='Usuario'>" . $usuario_data['nomeuser'] . "</td>";
                             echo "<td  data-label='Autor'>" . $livro_data['nomelivro'] . "</td>";
                             echo "<td  data-label='Quantidade'>" . $user_data['dataaluguel'] . "</td>";
+                            echo "<td  data-label='Quantidade'>" . $user_data['previsaodevolucao'] . "</td>";
                             echo "<td  data-label='Alugado'>" . $user_data['datadevolu'] . "</td>";
 
                             //Status da Tabela
-                            echo '<td data-label="Status" class="';
-                            if (strtotime($user_data['dataaluguel'] . ' 23:59:59') > strtotime($user_data['datadevolu'] . ' 23:59:59')) {
-                                echo 'atrasado';
+                        
+                            echo "<td data-label='Status'>";
+                            // Aqui eu Verifico se a devolução está atrasada
+                            if (!empty($user_data['previsaodevolucao']) && !empty($user_data['datadevolu'])) {
+                                //Definindo a previsao de devoluçao e devoluçao
+                                $previsao = strtotime($user_data['previsaodevolucao']);
+                                $devolucao = strtotime($user_data['datadevolu']);
+// se a Data devoluçao for maior que a data de previsao, o livro estará atrasado.
+
+                                if ($devolucao > $previsao) {
+                                    echo "Devolvido Atrasado";
+                                }
+                                //Se nao, devolvido no prazo 
+                                else {
+                                    echo "Devolvido No prazo";
+                                }
+                                // se nao tiver apertado no icone de devolver, o status do livro diz que ele nao foi devolvido ainda.
                             } else {
-                                echo 'no-prazo';
+                                echo "Livro Não devolvido";
                             }
-                            echo '">';
-        
-                            if (strtotime($user_data['dataaluguel'] . ' 23:59:59') > strtotime($user_data['datadevolu'] . ' 23:59:59')) {
-                                echo '<span style="color: red; font-weight: bold;">Atrasado</span>';
-                            } else {
-                                echo '<span style="color: green; font-weight: bold;">No prazo</span>';
-                            }
-                            echo '</td>';
-//Açoes : apagar,devolver e deletar
+                            echo "</td>";
+
+                            //Açoes : apagar,devolver e deletar.
                             echo '<td data-label="Ações">
                             <div id="conteudo_' . $user_data['idaluguel'] . '">
                                 <a href="editaluguel.php?idaluguel=' . $user_data['idaluguel'] . '">
                                     <i class="edit bi bi-pencil-fill"></i>
                                 </a>
                                 
-                                <a href="deleteAluguel.php?idaluguel=' . $user_data['idaluguel'] . '" class="' . ($mostrarIcones ? '' : 'hidden-icons') . '">
+                                <a href="deleteAluguel.php?idaluguel=' . $user_data['idaluguel'] . '">
                                     <i class="trash bi bi-trash3-fill"></i>
                                 </a>
-                                
-                                <a>
-                                    <button onclick="escondeIcones(\'conteudo_' . $user_data['idaluguel'] . '\')" class="devolvercheck"> 
-                                        <i class="fa-solid fa-calendar-check devolver-icone" style="color: #35c318;"></i>
-                                    </button>
+
+                                <a href="devolver.php?idaluguel=' . $user_data['idaluguel'] . '">
+                                <i class="fa-solid fa-calendar-check devolver-icone" style="color: #35c318;"></i>
                                 </a>
                             </div>
-                        </td>';
+                         </td>';
                             // Fechamento da linha para cada registro
                         
                         } ?>
@@ -358,14 +373,10 @@ $mostrarIcones = true;
                         </select>
                     </div>
 
-                    <div class="form-content">
-                        <label for="Datealuguel">Data do Aluguel</label>
-                        <input type="date" id="Datealuguel" name="Datealuguel" min="2023-11-10">
-                    </div>
 
                     <div class="form-content">
-                        <label for="Datealuguel">Data de Devolução</label>
-                        <input type="date" id="Devolucao" name="Devolucao" min="2023-11-10">
+                        <label>Previsão de Devolução</label>
+                        <input type="date" id="Previsao" name="Previsao">
                     </div>
                     <button type="submit" name="submit-aluguel" id="submit">Cadastrar</button>
 
@@ -375,14 +386,14 @@ $mostrarIcones = true;
     </main>
 
 
-    
+
     <!--JS-->
- <!-- JS -->
-<script src="../JS/esconder.js"></script>
-<script src="../JS/pesquisarAluguel.js"></script>
-<script src="../JS/modal.js"></script>
-<script src="../sidebar/sidebar.js"></script>
-<script src="../JS/alugueis.js"></script>
+    <!-- JS -->
+    <script src="../JS/devolver.js"></script>
+    <script src="../JS/pesquisarAluguel.js"></script>
+    <script src="../JS/modal.js"></script>
+    <script src="../sidebar/sidebar.js"></script>
+    <script src="../JS/alugueis.js"></script>
 
 
 </body>

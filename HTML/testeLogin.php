@@ -24,10 +24,10 @@ if (isset($_POST['submit-login']) && !empty($_POST['admin']) && !empty($_POST['s
 
     if (mysqli_num_rows($result) < 1) {
         //destruir estas informaçoes
-      unset(  $_SESSION['admsistema']);
-      unset(  $_SESSION['senhasistema']);
-      header('Location: login-adm.php');
-      
+        unset($_SESSION['admsistema']);
+        unset($_SESSION['senhasistema']);
+       
+        echo '<script> alert ("Usuário ou Senha incorreto, Volte e insira De novo!"); location.href=("login-adm.php")</script>';
 
     } else {
         $_SESSION['admsistema'] = $Adm;
@@ -35,7 +35,8 @@ if (isset($_POST['submit-login']) && !empty($_POST['admin']) && !empty($_POST['s
         header('Location: dashboard.php');
     }
 
+    
     // se errar a senha, voltará para a tela login
-} 
+}
 
 ?>

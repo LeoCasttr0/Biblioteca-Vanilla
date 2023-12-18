@@ -16,16 +16,17 @@ if (isset($_POST['submit-editora'])) {
     $result = mysqli_query($conexao, "INSERT INTO editoras (nomeeditora,cidadeeditora) VALUES ('$Editora','$Cidade')");
 }
 
+//se nao tiver vazio o search e se for alguma editora ou cidade , ira exibir.
 if (!empty($_GET['search'])) {
     $data = $_GET['search'];
     $sql = "SELECT * FROM editoras WHERE id LIKE '%$data%' or nomeeditora LIKE '%$data%' or cidadeeditora LIKE '%$data%' ORDER BY id DESC";
-} else {
-    // Consulta padrão se não houver pesquisa
+} 
+// se tiver vazio, ele deverá exibir todos os registros da pagina.
+else {
     $sql = "SELECT * FROM editoras ORDER BY id DESC";
 }
 
 $result = $conexao->query($sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -203,7 +204,7 @@ $result = $conexao->query($sql);
                 <div class="search">
                     <h5>Procurar</h5>
                     <input type="text" name="" id="search" placeholder="Digite Aqui">
-
+                    
                 </div>
             </section>
             <section class="field">
@@ -224,9 +225,11 @@ $result = $conexao->query($sql);
                             echo "<td  data-label='Editora'>" . $user_data['nomeeditora'] . "</td>";
                             echo "<td  data-label='Cidade'>" . $user_data['cidadeeditora'] . "</td>";
                             echo "<td  data-label='Ações'>
+                             
                              <a href='edit.php?id=$user_data[id]'>
                               <i class='edit bi bi-pencil-fill'></i>
                              </a>
+
 
                             <a href='delete.php?id=$user_data[id]'>
                              <i class='trash bi bi-trash3-fill'></i>

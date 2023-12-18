@@ -38,6 +38,8 @@ if (!empty($_GET['id'])) {
 </head>
 
 <body>
+
+
     <!--Modal editar -->
     <div class="modal-container">
         <div class="modal">
@@ -66,9 +68,12 @@ if (!empty($_GET['id'])) {
                 </div>
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <button type="submit" name="update" id="update">Alterar</button>
+             
             </form>
         </div>
+        
     </div>
+    
 </body>
 
 </html>

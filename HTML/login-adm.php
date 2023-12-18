@@ -1,3 +1,37 @@
+<?php
+// Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Inicializa variáveis de erro
+    $errors = array();
+
+    // Obtém os valores dos campos do formulário
+    $admin = $_POST["admin"];
+    $senha = $_POST["senha"];
+
+    // Validação do campo "Usuário"
+    if (empty($admin)) {
+        $errors["admin"] = "Por favor, preencha o campo Usuário.";
+    }
+
+    // Validação do campo "Senha"
+    if (empty($senha)) {
+        $errors["senha"] = "Por favor, preencha o campo Senha.";
+    }
+
+    // Se não houver erros, processa os dados
+    if (empty($errors)) {
+        // Faça o que for necessário com os dados, por exemplo, autenticação do usuário
+        // ...
+
+        // Redireciona ou exibe uma mensagem de sucesso, conforme necessário
+        // header("Location: página_de_sucesso.php");
+        // exit();
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,7 +63,8 @@
                     <div>
                         <h5>Usuário</h5>
                         <input class="input" name="admin" type="text" id="Nomeuser" required >
-                       
+                        <!-- Exibe mensagem de erro, se houver -->
+                  
                     </div>
                 </div>
 
